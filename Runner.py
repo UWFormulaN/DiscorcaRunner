@@ -5,7 +5,7 @@ def IsDiscorcaRunning(container_name):
     """Check if the specified Docker container is running."""
     try:
         # List all running containers and check if the specified container is in the list
-        result = subprocess.run(['docker', 'ps', '--format', '{{.Names}}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        result = subprocess.run(['docker', 'ps', '--format', '{{.Names}}'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         print(result.stdout)
         return container_name in result.stdout.strip().split('\n')
     except subprocess.SubprocessError as e:
