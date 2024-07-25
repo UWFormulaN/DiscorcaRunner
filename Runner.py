@@ -20,7 +20,7 @@ def RemoveContainer(container_name):
     except subprocess.SubprocessError as e:
         print(f"Error removing container {container_name}: {e}")
 
-def RunOrcaBot ():
+def RunOrcaBot (container_name):
     try:
         subprocess.run(['docker', 'run', '-it', '--name', 'orcabot', '--restart=always', '--shm-size=100G', '-v', '/homeFAST/OrcaBot/Settings:/OrcaBot/Resources', '-v', '/homeFAST/OrcaBot/OrcaJobsArchive:/OrcaJobsArchive','mrdnalex/orcabot'], check=True)
         print(f"Container {container_name} removed successfully.")
@@ -33,7 +33,7 @@ while True:
     if not IsDiscorcaRunning(container_name):
         print(f"Container {container_name} is not running. Removing it...")
         RemoveContainer(container_name)
-        RunOrcaBot()
+        RunOrcaBot(container_name)
     else:
         print(f"Container {container_name} is running.")
     
